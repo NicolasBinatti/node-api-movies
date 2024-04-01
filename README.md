@@ -10,7 +10,7 @@
 ## How to run the project?
 ```
 # clone the repository
-$ git clone git@github.com:NicolasBinatti/texoit-api.git
+$ git clone git@github.com:NicolasBinatti/node-api-movies.git
 
 # install dependencies
 $ npm install
