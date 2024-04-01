@@ -1,9 +1,9 @@
 ## What was used in this project?
-1 - Typescript
-2 - Node + Express 
-3 - Prisma (ORM)
-4 - Jest (Tests[Unit and Integration])
-5 - SQLite (Database)
+- Typescript
+- Node + Express
+- Prisma (ORM)
+- Jest (Tests[Unit and Integration])
+- SQLite (Database)
 
 ```
 # clone the repository
@@ -18,3 +18,8 @@ $ npm start
 #run testes
 $ npm test
 ```
+
+## How to test the APIs?
+
+In the directory, there is a file <strong>postman.json</strong> <br>
+You just need to import the file on your postman...
