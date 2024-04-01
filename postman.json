@@ -52,7 +52,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"nicolasbinatti23@gmail.com\",\r\n    \"password\": \"nico123\"\r\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
