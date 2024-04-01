@@ -12,13 +12,13 @@
 # clone the repository
 $ git clone git@github.com:NicolasBinatti/texoit-api.git
 
-# install dependences
+# install dependencies
 $ npm install
 
-# run the projetct
+# run the project
 $ npm start
 
-#run testes
+#run tests
 $ npm test
 ```
 
