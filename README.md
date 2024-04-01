@@ -5,9 +5,12 @@
 - Jest (Tests[Unit and Integration])
 - SQLite (Database)
 
+<br>
+
+## How to run the project?
 ```
 # clone the repository
-$ git clone git@github.com:NicolasBinatti/textoit-api.git
+$ git clone git@github.com:NicolasBinatti/texoit-api.git
 
 # install dependences
 $ npm install
@@ -18,6 +21,8 @@ $ npm start
 #run testes
 $ npm test
 ```
+
+<br>
 
 ## How to test the APIs?
 
