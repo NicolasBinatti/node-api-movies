@@ -1,20 +1,30 @@
 ## What was used in this project?
-1 - Typescript
-2 - Node + Express 
-3 - Prisma (ORM)
-4 - Jest (Tests[Unit and Integration])
-5 - SQLite (Database)
+- Typescript
+- Node + Express
+- Prisma (ORM)
+- Jest (Tests[Unit and Integration])
+- SQLite (Database)
 
+<br>
+
+## How to run the project?
 ```
 # clone the repository
-$ git clone git@github.com:NicolasBinatti/textoit-api.git
+$ git clone git@github.com:NicolasBinatti/texoit-api.git
 
-# install dependences
+# install dependencies
 $ npm install
 
-# run the projetct
+# run the project
 $ npm start
 
-#run testes
+#run tests
 $ npm test
 ```
+
+<br>
+
+## How to test the APIs?
+
+In the directory, there is a file <strong>postman.json</strong> <br>
+You just need to import the file on your postman...
