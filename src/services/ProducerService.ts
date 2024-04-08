@@ -1,5 +1,5 @@
-import MoviesService from "./MoviesService";
 import Producer from "../interfaces/ProducerInterface";
+import MoviesService from "./MoviesService";
 
 class ProducerService {
     public async getListMovies(): Promise<any> {
@@ -20,90 +20,64 @@ class ProducerService {
             }
         }
 
-        const result: any = {}
-        result.max = this.getMaxDiferenceBetweenYears(Producers).sort((a, b) => b.interval - a.interval);
-        result.min = this.getMinDiferenceBetweenYears(Producers).sort((a, b) => a.interval - b.interval);
-
-        return result;
+        return this.getDiferenceWin(Producers);
     }
 
-    private getMaxDiferenceBetweenYears(data: Producer[]): any[] {
+
+    private getDiferenceWin(data: Producer[]): any {
 
         const newWin: any[] = [];
-        for (const win of this.getYearsInArray(data)) {
-
-            const years = win.years.map((item: any) => {
+        for (const [key, value] of Object.entries<{ [key: string]: any }>(this.getYearsInArray(data))) {
+            const years = value.years.map((item: any) => {
                 return isNaN(parseInt(item)) ? item : parseInt(item);
             });
-
+            //
             const firstYear = Math.min(...years);
             const lastYear = Math.max(...years);
+            const diference = lastYear - firstYear;
+
+            if (diference <= 0) {
+                continue;
+            }
 
             newWin.push({
-                producer: win.producer,
+                producer: key,
                 interval: lastYear - firstYear,
                 previousWin: firstYear,
                 followingWin: lastYear,
             })
         }
-        return newWin;
-    }
 
-    private getMinDiferenceBetweenYears(Producer: any[]): any[] {
-        const lazyWin: any[] = [];
+        let min: any = newWin[0];
+        let max: any = newWin[0];
 
-        for (const win of this.getYearsInArray(Producer)) {
-
-            win.years.sort((a: number, b: number) => a - b);
-
-            let smallestDifference: number = Number.MAX_SAFE_INTEGER;
-            var smallestYear: number = 0;
-            let biggestYear: number = 0;
-
-
-            for (const [key, year] of win.years.entries()) {
-                if (key === 0) {
-                    continue;
-                }
-
-                if (year - win.years[key - 1] < smallestDifference) {
-                    smallestDifference = year - win.years[key - 1]
-                    smallestYear = win.years[key - 1];
-                    biggestYear = year;
-                }
-
+        for (const producer of newWin) {
+            if (producer.interval > max.interval) {
+                max = producer
             }
-
-            lazyWin.push({
-                producer: win.producer,
-                interval: smallestDifference,
-                previousWin: smallestYear,
-                followingWin: biggestYear,
-            })
+            if (producer.interval < min.interval) {
+                min = producer
+            }
         }
-        return lazyWin;
+
+        return {max: max, min: min};
     }
 
     private getYearsInArray(Producer: any[]): any {
 
-        const winningYearsByProducer: any[] = [];
+        let producerObject: { [key: string]: { years: number[] } } = {};
         for (const entry of Producer) {
-            const producerName = entry.name;
-            const winningYears: number[] = [];
-
+            let producerName = entry.name;
             for (const movie of entry.movies) {
                 if (movie.winner) {
-                    winningYears.push(movie.year);
+                    if (!producerObject[producerName]) {
+                        producerObject[producerName] = {years: []};
+                    }
+                    producerObject[producerName].years.push(movie.year);
                 }
             }
-
-            //Just who have more than 1 award
-            if (winningYears.length > 1) {
-                winningYearsByProducer.push({producer: producerName, years: winningYears});
-            }
         }
-
-        return winningYearsByProducer;
+        return producerObject;
     }
 
 }
